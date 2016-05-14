@@ -4,7 +4,6 @@ if(!isset($_SESSION['emp_id']))
 {
 	header('Location: login.php');
 }
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,13 +26,11 @@ $(document).ready(function(){
         $("#panel").slideToggle("slow");
     });
 });
-
 $(document).ready(function(){
     $("#flip2").click(function(){
         $("#panel2").slideToggle("slow");
     });
 });
-
 $(document).ready(function(){
     $("#flip3").click(function(){
         $("#panel3").slideToggle("slow");
@@ -65,41 +62,34 @@ $(document).ready(function(){
 	text-decoration: none;
 	color: black;
 	}
-
 	
 #panel, #flip {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
-
 #panel {
     padding: auto;
     display: none;
 }
-
 #panel2, #flip2 {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
-
 #panel2 {
     padding: auto;
     display: none;
 }
-
 #panel3, #flip3 {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
-
 #panel3 {
     padding: auto;
     display: none;
 }
-
 </style>
 
 </head>
@@ -198,7 +188,6 @@ Update Your Portfolio
   <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>-->
 <!--
   <p>If you click on the "Hide" button, I will disappear.</p>
-
 <button id="hide">Hide</button>
 <button id="show">Show</button>
   -->
@@ -277,7 +266,7 @@ Update Your Portfolio
   <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="UPDATE" />
   </label>
 </fieldset>
-
+</form>
 </div>
 <br>
 <div id="main">
@@ -295,7 +284,7 @@ Update Your Portfolio
 						
 						$id = $_SESSION['emp_id'];
 						
-						$sql = "SELECT * FROM educational WHERE emp_id='".$id."' AND type='PG'";
+						$sql = "SELECT * FROM educational WHERE emp_id='".$id."' AND type='PG' ";
 						
 						$result=mysql_query($sql);
 						
@@ -304,6 +293,7 @@ Update Your Portfolio
 						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
 						
 	?>
+    
 	<!-- inside loop -->
 	<tr>
 		<td rowspan="2"> <?php echo $row["date_grad"]; ?> </td>
@@ -318,24 +308,29 @@ Update Your Portfolio
 	</tr>
 	<?php } ?>
 	</table>
-	<div id="flip"> <p align="right"> + ADD MASTER'S DEGREE </p> </div>
+	 
+   <form name="form1" method="post" action="addPG.php" >  
+    <div id="flip"> <p align="right"> + ADD MASTER'S DEGREE </p> </div>
   <hr>
   <div id="panel">
   <label> Institution: </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
+  <input type="text" class="form-control" name="txt_institution" id="txt_institution" value=" " />
   <label> Degree: </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
+  <input type="text" class="form-control" name="txt_degree" id="txt_degree" value=" " />
   <label> Date Graduated: </label>
-  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" />
+  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" value=" " />
 
   <br>
   
   <form class="form-inline">
   <div class="form-group">
   <button type="submit" class="btn btn-primary" >CANCEL</button>
-  <button type="submit" class="btn btn-primary">ADD</button>
+  <button type="submit" class="btn btn-primary" name="btnaddPG">ADD</button>
   </div>
   </form>
+  </form>
+  
+   
   </div>
   
   </div>
@@ -373,25 +368,33 @@ Update Your Portfolio
 	</tr>
 	<?php } ?>
 	</table>
+    
+    <form name="form1" method="post" action="addC.php" >  
+    
 	<div id="flip2"> <p align="right"> + ADD BACHELOR'S DEGREE </p> </div>
   <hr>
   <div id="panel2">
   <label> Institution: </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
+  <input type="text" class="form-control" name="txt_institutionC" id="txt_institution" />
   <label> Degree: </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
+  <input type="text" class="form-control" name="txt_degreeC" id="txt_degree" />
   <label> Date Graduated: </label>
-  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" />
+  <input type="text" class="form-control" name="txt_dategradC" id="txt_dategrad" />
 
   <br>
   
   <form class="form-inline">
   <div class="form-group">
   <button type="submit" class="btn btn-primary">CANCEL</button>
-  <button type="submit" class="btn btn-primary">ADD</button>
+  <button type="submit" class="btn btn-primary" name="btnaddC">ADD</button>
   </div>
   </form>
+  
+  </form>
+  
   </div>
+  
+  
   <hr>
   <br>
     <div class="form-group">
@@ -671,7 +674,7 @@ Update Your Portfolio
 		}
 		*/
   ?>
-</form>
+
 
 </body>
 </html>
