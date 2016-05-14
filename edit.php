@@ -39,6 +39,12 @@ $(document).ready(function(){
         $("#panel3").slideToggle("slow");
     });
 });
+
+$(document).ready(function(){
+    $("#flip4").click(function(){
+        $("#panel4").slideToggle("slow");
+    });
+});
 </script>
 	<style>
 	#main {
@@ -100,6 +106,16 @@ $(document).ready(function(){
     display: none;
 }
 
+#panel4, #flip4 {
+    padding: 5px;
+    background-color: transparent;
+    border: solid 1px transparent;
+}
+
+#panel4 {
+    padding: auto;
+    display: none;
+}
 </style>
 
 </head>
@@ -277,6 +293,7 @@ Update Your Portfolio
   <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="UPDATE" />
   </label>
 </fieldset>
+</form>
 
 </div>
 <br>
@@ -288,7 +305,7 @@ Update Your Portfolio
   
   <div class="form-group">
   <h4> Post Graduated </h4>
-  <table border="3" class="table table-hover">
+ 
   <?php
 						
 						include('connect.php');
@@ -305,6 +322,7 @@ Update Your Portfolio
 						
 	?>
 	<!-- inside loop -->
+	 <table border="3" class="table table-hover">
 	<tr>
 		<td rowspan="2"> <?php echo $row["date_grad"]; ?> </td>
 		<td align="left"> <?php echo $row["degree"]; ?> <br> 
@@ -316,8 +334,9 @@ Update Your Portfolio
 		<td align="right">  <a href="#">EDIT</a> </td>
 		<td></td>
 	</tr>
-	<?php } ?>
 	</table>
+	<?php } ?>
+	
 	<div id="flip"> <p align="right"> + ADD MASTER'S DEGREE </p> </div>
   <hr>
   <div id="panel">
@@ -343,7 +362,7 @@ Update Your Portfolio
   <hr>
   <div class="form-group">
   <h4> Tertiary </h4>
-  <table border="3" class="table table-hover">
+  
   <?php
 						
 						include('connect.php');
@@ -360,6 +379,7 @@ Update Your Portfolio
 						
 	?>
 	<!-- inside loop -->
+	<table border="3" class="table table-hover">
 	<tr>
 		<td rowspan="2"> <?php echo $row["date_grad"]; ?> </td>
 		<td align="left"> <?php echo $row["degree"]; ?> <br> 
@@ -371,8 +391,9 @@ Update Your Portfolio
 		<td align="right"> <a href="#" >EDIT</a> </td>
 		<td></td>
 	</tr>
-	<?php } ?>
 	</table>
+	<?php } ?>
+	
 	<div id="flip2"> <p align="right"> + ADD BACHELOR'S DEGREE </p> </div>
   <hr>
   <div id="panel2">
@@ -471,14 +492,13 @@ Update Your Portfolio
   
   <legend> Professional Eligibility </legend>
   <br>
-  <table border="3" class="table table-hover">
   <?php
 						
 						include('connect.php');
 						
 						$id = $_SESSION['emp_id'];
 						
-						$sql = "SELECT * FROM professional WHERE emp_id='".$id."'";
+						$sql = "SELECT * FROM professional WHERE emp_id='".$id."' ORDER BY date_taken";
 						
 						$result=mysql_query($sql);
 						
@@ -487,15 +507,17 @@ Update Your Portfolio
 						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
 						
 	?>
+	<table border="3" class="table table-hover">
 	<tr>
 		<td> <?php echo $row["title"]; ?> </td>
 		<td> <?php echo $row["license_no"]; ?> </td>
 		<td align="right"> <?php echo $row["date_taken"]; ?> </td>
 	</tr>
+	</table>
 	<?php
 	}
 	?>
-	</table>
+	
 	<br>
 	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="UPDATE" />
 <br>
@@ -515,35 +537,59 @@ Update Your Portfolio
   
 </fieldset>
 </div>
-
 <br>
 <div id="main">
 <fieldset>
-  
   <legend> Occupational Record </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
-</fieldset>
-</div>
-<br>
-<div id="main">
-<fieldset>
+ <br>
   
-  <legend> Professional Eligibility </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
+  <?php
+						
+						include('connect.php');
+						
+						$id = $_SESSION['emp_id'];
+						
+						$sql = "SELECT * FROM occupational WHERE emp_id='".$id."'";
+						
+						$result=mysql_query($sql);
+						
+						while($row=mysql_fetch_assoc($result))
+						{
+						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
+						
+	?>
+	<table border="3" class="table table-hover">
+	<tr>
+		<td> <?php echo $row["position"]; ?> </td>
+		<td align="right"> <?php echo $row["company"]; ?> </td>
+	</tr>
+	<tr>
+		<td> <?php echo $row["address"]; ?> </td>
+		<td align="right"> <?php echo $row["inclusive_date"]; ?> </td>
+	</tr>
+	</table>
+	<?php
+	}
+	?>
+	
+	<br>
+	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="UPDATE" />
+<br>
+	<div id="flip4"> <p align="right"> + ADD OCCUPATIONAL </p> </div>
+	<hr>
+	<div id="panel4">
+	<label> Position: </label>
+	<input type="text" class="form-control" name="txt_position" id="txt_position" />
+	<label> Company: </label>
+	<input type="text" class="form-control" name="txt_company" id="txt_company" />
+	<label> Address: </label>
+	<input type="text" class="form-control" name="txt_address" id="txt_address" />
+	<label> Inclusive Dates: </label>
+	<input type="text" class="form-control" name="txt_inclusive" id="txt_inclusive" />
+	<br>
+	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="ADD" />
+	</div>
+  
 </fieldset>
 </div>
 <br>
@@ -581,21 +627,6 @@ Update Your Portfolio
 <fieldset>
   
   <legend> Organization Affiliation </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
-</fieldset>
-</div>
-<br>
-<div id="main">
-<fieldset>
-  
-  <legend> Professional Eligibility </legend>
   <br>
   <label> Institution </label>
   <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
@@ -671,7 +702,6 @@ Update Your Portfolio
 		}
 		*/
   ?>
-</form>
 
 </body>
 </html>
