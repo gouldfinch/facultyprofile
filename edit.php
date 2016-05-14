@@ -4,6 +4,7 @@ if(!isset($_SESSION['emp_id']))
 {
 	header('Location: login.php');
 }
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,14 +27,22 @@ $(document).ready(function(){
         $("#panel").slideToggle("slow");
     });
 });
+
 $(document).ready(function(){
     $("#flip2").click(function(){
         $("#panel2").slideToggle("slow");
     });
 });
+
 $(document).ready(function(){
     $("#flip3").click(function(){
         $("#panel3").slideToggle("slow");
+    });
+});
+
+$(document).ready(function(){
+    $("#flip4").click(function(){
+        $("#panel4").slideToggle("slow");
     });
 });
 </script>
@@ -62,31 +71,48 @@ $(document).ready(function(){
 	text-decoration: none;
 	color: black;
 	}
+
 	
 #panel, #flip {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
+
 #panel {
     padding: auto;
     display: none;
 }
+
 #panel2, #flip2 {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
+
 #panel2 {
     padding: auto;
     display: none;
 }
+
 #panel3, #flip3 {
     padding: 5px;
     background-color: transparent;
     border: solid 1px transparent;
 }
+
 #panel3 {
+    padding: auto;
+    display: none;
+}
+
+#panel4, #flip4 {
+    padding: 5px;
+    background-color: transparent;
+    border: solid 1px transparent;
+}
+
+#panel4 {
     padding: auto;
     display: none;
 }
@@ -188,6 +214,7 @@ Update Your Portfolio
   <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>-->
 <!--
   <p>If you click on the "Hide" button, I will disappear.</p>
+
 <button id="hide">Hide</button>
 <button id="show">Show</button>
   -->
@@ -267,6 +294,7 @@ Update Your Portfolio
   </label>
 </fieldset>
 </form>
+
 </div>
 <br>
 <div id="main">
@@ -277,14 +305,14 @@ Update Your Portfolio
   
   <div class="form-group">
   <h4> Post Graduated </h4>
-  <table border="3" class="table table-hover">
+ 
   <?php
 						
 						include('connect.php');
 						
 						$id = $_SESSION['emp_id'];
 						
-						$sql = "SELECT * FROM educational WHERE emp_id='".$id."' AND type='PG' ";
+						$sql = "SELECT * FROM educational WHERE emp_id='".$id."' AND type='PG'";
 						
 						$result=mysql_query($sql);
 						
@@ -293,8 +321,8 @@ Update Your Portfolio
 						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
 						
 	?>
-    
 	<!-- inside loop -->
+	 <table border="3" class="table table-hover">
 	<tr>
 		<td rowspan="2"> <?php echo $row["date_grad"]; ?> </td>
 		<td align="left"> <?php echo $row["degree"]; ?> <br> 
@@ -306,31 +334,27 @@ Update Your Portfolio
 		<td align="right">  <a href="#">EDIT</a> </td>
 		<td></td>
 	</tr>
-	<?php } ?>
 	</table>
-	 
-   <form name="form1" method="post" action="addPG.php" >  
-    <div id="flip"> <p align="right"> + ADD MASTER'S DEGREE </p> </div>
+	<?php } ?>
+	
+	<div id="flip"> <p align="right"> + ADD MASTER'S DEGREE </p> </div>
   <hr>
   <div id="panel">
   <label> Institution: </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" value=" " />
+  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
   <label> Degree: </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" value=" " />
+  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
   <label> Date Graduated: </label>
-  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" value=" " />
+  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" />
 
   <br>
   
   <form class="form-inline">
   <div class="form-group">
   <button type="submit" class="btn btn-primary" >CANCEL</button>
-  <button type="submit" class="btn btn-primary" name="btnaddPG">ADD</button>
+  <button type="submit" class="btn btn-primary">ADD</button>
   </div>
   </form>
-  </form>
-  
-   
   </div>
   
   </div>
@@ -338,7 +362,7 @@ Update Your Portfolio
   <hr>
   <div class="form-group">
   <h4> Tertiary </h4>
-  <table border="3" class="table table-hover">
+  
   <?php
 						
 						include('connect.php');
@@ -355,6 +379,7 @@ Update Your Portfolio
 						
 	?>
 	<!-- inside loop -->
+	<table border="3" class="table table-hover">
 	<tr>
 		<td rowspan="2"> <?php echo $row["date_grad"]; ?> </td>
 		<td align="left"> <?php echo $row["degree"]; ?> <br> 
@@ -366,35 +391,28 @@ Update Your Portfolio
 		<td align="right"> <a href="#" >EDIT</a> </td>
 		<td></td>
 	</tr>
-	<?php } ?>
 	</table>
-    
-    <form name="form1" method="post" action="addC.php" >  
-    
+	<?php } ?>
+	
 	<div id="flip2"> <p align="right"> + ADD BACHELOR'S DEGREE </p> </div>
   <hr>
   <div id="panel2">
   <label> Institution: </label>
-  <input type="text" class="form-control" name="txt_institutionC" id="txt_institution" />
+  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
   <label> Degree: </label>
-  <input type="text" class="form-control" name="txt_degreeC" id="txt_degree" />
+  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
   <label> Date Graduated: </label>
-  <input type="text" class="form-control" name="txt_dategradC" id="txt_dategrad" />
+  <input type="text" class="form-control" name="txt_dategrad" id="txt_dategrad" />
 
   <br>
   
   <form class="form-inline">
   <div class="form-group">
   <button type="submit" class="btn btn-primary">CANCEL</button>
-  <button type="submit" class="btn btn-primary" name="btnaddC">ADD</button>
+  <button type="submit" class="btn btn-primary">ADD</button>
   </div>
   </form>
-  
-  </form>
-  
   </div>
-  
-  
   <hr>
   <br>
     <div class="form-group">
@@ -474,14 +492,13 @@ Update Your Portfolio
   
   <legend> Professional Eligibility </legend>
   <br>
-  <table border="3" class="table table-hover">
   <?php
 						
 						include('connect.php');
 						
 						$id = $_SESSION['emp_id'];
 						
-						$sql = "SELECT * FROM professional WHERE emp_id='".$id."'";
+						$sql = "SELECT * FROM professional WHERE emp_id='".$id."' ORDER BY date_taken";
 						
 						$result=mysql_query($sql);
 						
@@ -490,15 +507,17 @@ Update Your Portfolio
 						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
 						
 	?>
+	<table border="3" class="table table-hover">
 	<tr>
 		<td> <?php echo $row["title"]; ?> </td>
 		<td> <?php echo $row["license_no"]; ?> </td>
 		<td align="right"> <?php echo $row["date_taken"]; ?> </td>
 	</tr>
+	</table>
 	<?php
 	}
 	?>
-	</table>
+	
 	<br>
 	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="UPDATE" />
 <br>
@@ -518,35 +537,59 @@ Update Your Portfolio
   
 </fieldset>
 </div>
-
 <br>
 <div id="main">
 <fieldset>
-  
   <legend> Occupational Record </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
-</fieldset>
-</div>
-<br>
-<div id="main">
-<fieldset>
+ <br>
   
-  <legend> Professional Eligibility </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
+  <?php
+						
+						include('connect.php');
+						
+						$id = $_SESSION['emp_id'];
+						
+						$sql = "SELECT * FROM occupational WHERE emp_id='".$id."'";
+						
+						$result=mysql_query($sql);
+						
+						while($row=mysql_fetch_assoc($result))
+						{
+						//echo $row["firstname"]." ".substr($row["midname"],0,1).". ".$row["lastname"];
+						
+	?>
+	<table border="3" class="table table-hover">
+	<tr>
+		<td> <?php echo $row["position"]; ?> </td>
+		<td align="right"> <?php echo $row["company"]; ?> </td>
+	</tr>
+	<tr>
+		<td> <?php echo $row["address"]; ?> </td>
+		<td align="right"> <?php echo $row["inclusive_date"]; ?> </td>
+	</tr>
+	</table>
+	<?php
+	}
+	?>
+	
+	<br>
+	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="UPDATE" />
+<br>
+	<div id="flip4"> <p align="right"> + ADD OCCUPATIONAL </p> </div>
+	<hr>
+	<div id="panel4">
+	<label> Position: </label>
+	<input type="text" class="form-control" name="txt_position" id="txt_position" />
+	<label> Company: </label>
+	<input type="text" class="form-control" name="txt_company" id="txt_company" />
+	<label> Address: </label>
+	<input type="text" class="form-control" name="txt_address" id="txt_address" />
+	<label> Inclusive Dates: </label>
+	<input type="text" class="form-control" name="txt_inclusive" id="txt_inclusive" />
+	<br>
+	<input type="submit" class="btn btn-primary" name="btn_add" id="btn_add" value="ADD" />
+	</div>
+  
 </fieldset>
 </div>
 <br>
@@ -584,21 +627,6 @@ Update Your Portfolio
 <fieldset>
   
   <legend> Organization Affiliation </legend>
-  <br>
-  <label> Institution </label>
-  <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
-  <label> Degree </label>
-  <input type="text" class="form-control" name="txt_degree" id="txt_degree" />
-  <br>
-  <label align="right">
-  <input type="submit" class="btn btn-primary btn-block" name="btn_add" id="btn_add" value="ADD" /> </label>
-</fieldset>
-</div>
-<br>
-<div id="main">
-<fieldset>
-  
-  <legend> Professional Eligibility </legend>
   <br>
   <label> Institution </label>
   <input type="text" class="form-control" name="txt_institution" id="txt_institution" />
@@ -674,7 +702,6 @@ Update Your Portfolio
 		}
 		*/
   ?>
-
 
 </body>
 </html>
